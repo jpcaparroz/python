@@ -1,10 +1,15 @@
-from . import Player
+from .player import Player
+from .round import Round
 
 class Match:
     
-    def __init__(self, p1:Player, p2:Player) -> None:
-        self.p1 = p1
-        self.p2 = p2
+    def __init__(self, player1:Player, player2:Player, round:int) -> None:
+        self.player1 = player1
+        self.player2 = player2
+        self.round = round
         
     def __str__(self) -> str:
-        return f'Player 1: {self.p1.name} | Player 2: {self.p2.name}'
+        return f'Player 1: {self.player1.name} | Player 2: {self.player2.name}'
+    
+    def play(self) -> int:
+        
