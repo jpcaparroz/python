@@ -3,10 +3,6 @@ from .round import Round
 
 class Match(Round):
     
-    player1: Player
-    player2: Player
-    round: int
-    
     def __init__(self, player1:Player, player2:Player, round:int) -> None:
         self.player1 = player1
         self.player2 = player2
@@ -17,10 +13,10 @@ class Match(Round):
     
     def play(self) -> list:
         matches = []
-        
-        round = Round(self.player1, self.player2)
 
         for _ in range(self.round):
-            matches.append(round.automatic_game())
+            self.player1.random_move()
+            self.player2.random_move()
+            matches.append(self.game())
             
         return matches

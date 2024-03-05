@@ -1,8 +1,7 @@
-from typing import Union
-
-from .player import Player
 
 class Round:
+    
+    result: int
 
     def rule(self) -> None:
         result = 0
@@ -19,7 +18,7 @@ class Round:
         self.result = result
 
 
-    def winner(self) -> Union[Player, str]:
+    def winner(self) -> str:
         match self.result:
             case 0:
                 return 'DRAW'
@@ -32,5 +31,6 @@ class Round:
 
 
     def game(self) -> int:
-        return self.winner(self.rule())
+        self.rule()
+        return self.winner()
 

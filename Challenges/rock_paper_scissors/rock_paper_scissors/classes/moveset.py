@@ -6,9 +6,9 @@ class Moveset:
 
     def movement(self, move:str) -> None:
         if move.capitalize() not in VALID_MOVES:
-            raise ValueError(f'This move ({move}) are not valid. Try one of these: {VALID_MOVES}')
+            raise ValueError(f'Move ({move}) are not valid. Try one of these: {VALID_MOVES}')
         
-        self.move = move
+        return move
             
     def random_move(self) -> None:
-        self.move = random.choice(VALID_MOVES)
+        return random.choice(VALID_MOVES)
