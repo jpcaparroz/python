@@ -1,17 +1,11 @@
 from .moveset import Moveset
-class Player:
+class Player(Moveset):
     
-    move: Moveset
-
-    def __init__(self, name:str) -> None:
+    def __init__(self, name:str, move:str = None) -> None:
         self.name = name
-    
-    def __str__(self) -> str:
-        return f'{self.name}'
-    
-    def random_move(self) -> None:
-        self.move = Moveset.random_move()
+        self.move = self.movement(move) if move else self.random_move()
         
-    def move(self, move:Moveset) -> None:
-        self.move = move
+    def __str__(self) -> str:
+        return f'Name: {self.name} | Move: {self.move}'
+
     

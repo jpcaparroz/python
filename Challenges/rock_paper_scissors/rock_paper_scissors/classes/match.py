@@ -1,7 +1,11 @@
 from .player import Player
 from .round import Round
 
-class Match:
+class Match(Round):
+    
+    player1: Player
+    player2: Player
+    round: int
     
     def __init__(self, player1:Player, player2:Player, round:int) -> None:
         self.player1 = player1
