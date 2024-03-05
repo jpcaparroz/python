@@ -11,5 +11,12 @@ class Match:
     def __str__(self) -> str:
         return f'Player 1: {self.player1.name} | Player 2: {self.player2.name}'
     
-    def play(self) -> int:
+    def play(self) -> list:
+        matches = []
         
+        round = Round(self.player1, self.player2)
+
+        for _ in range(self.round):
+            matches.append(round.automatic_game())
+            
+        return matches

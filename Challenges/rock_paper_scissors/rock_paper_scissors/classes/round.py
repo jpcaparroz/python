@@ -1,39 +1,53 @@
+from typing import Union
+
 from .player import Player
 from .moveset import Moveset
 
 class Round:
     
+    result: int
+    
     def __init__(self, player1:Player, player2:Player) -> None:
         self.player1 = player1
         self.player2 = player2
     
-    def rule(self, move1:Moveset, move2:Moveset) -> int:
-        
+    
+    def rule(self) -> None:
         result = 0
 
-        if move1 == move2:
+        if self.player1.move == self.player2.move:
             pass
-        
-        if move1 == 'S' and move2 == 'P':
+
+        elif (self.player1.move, self.player2.move) in [('S', 'P'), ('R', 'S'), ('P', 'R')]:
             result = 1
-        
-        if move1 == 'P' and move2 == 'S':
-            result = 2
-        
-        if move1 == 'R' and move2 == 'S':
-            result = 1
-        
-        if move1 == 'S' and move2 == 'R':
-            result = 2
-        
-        if move1 == 'P' and move2 == 'R':
-            result = 1
-        
-        if move1 == 'R' and move2 == 'P':
+            
+        else:
             result = 2
             
-        return result
+        self.result = result
     
+    
+    def winner(self) -> Union[Player, str]:
+        match self.result:
+            case 0:
+                return 'DRAW'
+            
+            case 1:
+                return self.player1.name 
+            
+            case 2:
+                return self.player2.name
+            
+ 
     def game(self) -> int:
+        return self.winner(self.rule())
+    
+    
+    def automatic_game(self) -> str:
         
-        return self.rule(self.player1.move, self.player2.move)
+        self.player1.random_move()
+        self.player2.random_move()
+        self.rule()
+        
+        return self.winner()
+        
